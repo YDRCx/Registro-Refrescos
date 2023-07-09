@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Registro Refrescos 2023</title>
+</head>
+<body>
+    
+
+    <section id="todoLosRegistros">
+
+        <!-- Dia -->
+        
+        <div id="contendorDeRegistros">
+
+            <h1>Registro Refrescos</h1>
+
+            <div class="parejas date">
+                <input type="date" id="myDate">
+            </div>
+            
+            <div class="parejas">
+                <label for="total">Total:</label>
+                <input id="total" type="number">
+            </div>
+
+            <div class="parejas">
+                <label for="costo">Costo:</label>
+                <input id="costo" type="number">
+            </div>
+
+            <div class="parejas" id="ganancia-div">
+                <p>Ganancia total: </p>
+                <p id="ganancia"></p>
+            </div>
+
+        <p id="yefferson"></p>
+            <!--  -->
+    
+        <h1>Formas de Pago/dinero</h1>
+
+            <div class="parejas">
+                <label for="punto">Punto 💳</label>
+                <input id="punto" type="number">
+            </div>
+    
+            <div class="parejas">
+                <label for="efectivo">Efectivo (bs)</label>
+                <input id="efectivo" type="number">
+            </div>
+
+            <div class="parejas">
+                <label for="transferencia">Transferencia 📱</label>
+                <input id="transferencia" type="number"> 
+            </div>
+    
+            <div class="parejas">
+                <label for="divisas">Divisas 💸</label>
+                <input id="divisas" type="number">
+            </div>
+    
+            <div class="parejas detalles">
+                <label for="detalles">Detalles</label>
+                <textarea id="detalles" rows="4" cols="50"></textarea>
+            </div>
+    
+            <!-- <div class="botones">
+                <button>Borrar</button>
+                <button>Copiar</button>
+            </div> -->
+
+
+        </div>
+
+        
+
+    </section>
+    
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
