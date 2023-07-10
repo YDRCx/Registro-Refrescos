@@ -19,6 +19,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
   display: none;
 }
+/* --------------------------------- */
 
 h1 {
     background-color: var(--verde-pastel);
@@ -86,7 +87,7 @@ input:focus {
     border-color: var(--azul);
 }
 
-#yefferson {
+.pColor {
     font-size: var(--lg);
     height: 30px;
     padding-top: 12px;
@@ -98,7 +99,12 @@ input:focus {
 .botones {
     margin-top: 10px;
 }
-
+.botones button {
+    background-color: white;
+    border-color: var(--verde-pastel);
+    width: 100px;
+    height: 50px;
+}
 
 /*Input ganancia + Resultado*/
 
@@ -106,3 +112,9 @@ input:focus {
     font-size: var(--lg);
 }
 
+@media screen and (min-width: 500px) {
+    #todoLosRegistros {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+  }
