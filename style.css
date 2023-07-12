@@ -23,8 +23,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 h1 {
     background-color: var(--verde-pastel);
+    margin: 10px 0;
+    padding: 5px;
     color: white;
-    padding: 2px;
     border-radius: 5px;
 }
 
@@ -32,17 +33,16 @@ h1 {
     
     font-size: var(--md);
     margin: 10px;    
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    
+    display: grid;
+    grid-template-rows: 1fr;   
 }
 
 .parejas {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 48% 52%;
     
+    margin-bottom: 10px;
 }
 
 .detalles{
@@ -51,24 +51,35 @@ h1 {
 }
 .detalles textarea{
     width: 95%;
-    height: 100px;
+    /* height: 100px; */
     border-color: var(--verde-pastel);
     font-family: Arial, Helvetica, sans-serif;
     font-size: var(--md);
+    
 }
 
 .date input {
-    text-align: center;
     font-size: var(--lg);
 }
 
 label, input,
 .parejas p {
-    flex: 49 49 0;
-    margin-bottom: 10px;
+    margin: 0;
     height: 30px;
-    
+    line-height: 30px;
+    align-self: center;
 }
+
+.punto {
+    display: grid;
+    grid-template-columns: 48% 42% 10%;
+}
+
+.punto #fechaEntregaPunto {
+    margin-left: 5px;
+    /* background: red; */
+}
+
 
 label,
 .parejas p:nth-child(1) {
@@ -80,30 +91,38 @@ label,
 input,
 .parejas p:nth-child(2) {
     text-align: center;
-    border-color: var(--verde-pastel);
 }
 
-input:focus {
-    border-color: var(--azul);
+input {
+    border: 1px solid var(--verde-pastel);
+}
+
+
+input:focus,
+textarea:focus {
+    border-color: var(--azul-oscuro) !important;
+    
 }
 
 .pColor {
     font-size: var(--lg);
-    height: 30px;
-    padding-top: 12px;
+    padding: 5px 0;
     background-color: var(--verde-claro);
     border-radius: 5px;
-    margin: -5px 0 -5px 0;
 }
 
-.botones {
-    margin-top: 10px;
-}
 .botones button {
     background-color: white;
-    border-color: var(--verde-pastel);
-    width: 100px;
+    border: 1px solid var(--verde-pastel);
+    border-radius: 5px;
+    width: 200px;
     height: 50px;
+    cursor: pointer;
+}
+
+.botones button:active {
+    border-color: var(--azul-oscuro);
+    transform: scale(0.98);
 }
 
 /*Input ganancia + Resultado*/
@@ -118,3 +137,10 @@ input:focus {
         margin: 0 auto;
     }
   }
+
+  /* @media screen and (max-width: 400px) {
+    #todoLosRegistros {
+        min-width: 380px;
+        margin: 0 auto;
+    }
+  } */

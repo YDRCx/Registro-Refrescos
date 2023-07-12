@@ -18,7 +18,9 @@
             <h1>Registro Refrescos</h1>
 
             <div class="parejas date">
-                <input type="date" id="myDate">
+                <!-- <input type="text" id="day"> -->
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha">
             </div>
             
             <div class="parejas">
@@ -51,9 +53,10 @@
     
         <h1>Formas de Pago/Dinero</h1>
 
-            <div class="parejas">
+            <div class="parejas punto">
                 <label for="punto">Punto 💳</label>
                 <input id="punto" type="number">
+                <input type="number" id="fechaEntregaPunto" min="0" max="31" step="1">
             </div>
     
             <div class="parejas">
@@ -79,14 +82,10 @@
             <div class="botones">
                 <!-- <button id="borrar">Borrar</button> -->
                 <button id="copiar">Copiar</button>
-                
             </div>
 
 
-        </div>
-
-        
-
+        </div>    
     </section>
     
 
