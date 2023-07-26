@@ -13,6 +13,7 @@ const pGananciaYefferson = document.querySelector('#yefferson')
 const inputFecha = document.querySelector('#fecha')
 const btnCopiar = document.querySelector('#copiar')
 const btnBorrar = document.querySelector('#borrar')
+const mostrarCopiado = document.querySelector('.copiado')
 //const inputDetalles = document.querySelector('#detalles')
 
 
@@ -47,18 +48,25 @@ function copiarTexto() {
     const gananciaRedondeada = ganancia.toFixed(2)
     const gananciaDividida = gananciaRedondeada / 2;
 
-    /*****/
+    /** Formatear Fecha **/
     const fechaAFormatear = inputFecha.value
     const fechaObjeto = new Date(fechaAFormatear)
-    const dia = fechaObjeto.getDate();
-    const mes = fechaObjeto.getMonth() + 1; // Los meses en JavaScript son base 0, por lo que se suma 1
-    const anio = fechaObjeto.getFullYear();
-    const fechaNuevoFormato = `${mes.toString().padStart(2, "0")}-${dia.toString().padStart(2, "0")}-${anio}`;
-    /******/
+    const dia = fechaObjeto.getUTCDate(); // Retorna el día del mes (1 al 31)
+    const mes = fechaObjeto.getUTCMonth() + 1; // Retorna el mes (0 a 11), por eso sumamos 1
+    const anio = fechaObjeto.getUTCFullYear(); // Retorna el año en formato completo (por ejemplo, 2023)
+    const fechaNuevoFormato = `${dia.toString().padStart(2, "0")}-${mes.toString().padStart(2, "0")}-${anio}`;
+
+    /*** Seleccionar el dìa de la semana ***/
+    const fechaDiaSemana = new Date(inputFecha.value);
+    const numeroDiaSemana = fechaDiaSemana.getUTCDay(); // Obtenemos el número del día de la semana (0 para domingo, 1 para lunes, etc.)
+    const nombresDiasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];    
+    const diaSemana = nombresDiasSemana[numeroDiaSemana]; // Obtenemos el nombre del día de la semana a partir del número obtenido
+
+    /** ***************** */
 
 const texto =
 `*Refrescos*
-*${fechaNuevoFormato}*
+*${diaSemana}* *${fechaNuevoFormato}*
   
 Total: ${inputTotal.value}
 Costo: ${inputCosto.value}
@@ -77,18 +85,31 @@ Ganancia: ${gananciaRedondeada}
 ${textareaDetalles.value}`;
 
   copiarTextoAPortapapeles(texto)
-  console.log(texto);
+
+  /** Mostar el boton de copiado al hacer click en copiar */
+  mostrarCopiado.classList.remove('inactive')
+  setTimeout(function() {mostrarCopiado.classList.add('inactive');}, 2000);
+
+  /** Sonido del boton de copiar */
+  const audio = new Audio('./sonido/Espada.wav');
+  audio.play();
+
 }
 
+
+
+/** Esta funcion copia en el portapapeles el texto del navegador */
 function copiarTextoAPortapapeles(texto) {
   navigator.clipboard.writeText(texto)
   .then(() => {
-      console.log("Texto copiado al portapapeles: " + text);
+      console.log("Texto copiado al portapapeles: " + texto);
     })
     .catch((error) => {
       console.error("Error al copiar el texto: " + error);
     });
 }
+
+
 
 
 

@@ -97,7 +97,6 @@ input {
     border: 1px solid var(--verde-pastel);
 }
 
-
 input:focus,
 textarea:focus {
     border-color: var(--azul-oscuro) !important;
@@ -131,6 +130,34 @@ textarea:focus {
     font-size: var(--lg);
 }
 
+
+.copiado {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    border-radius: 5px;
+}
+
+
+.copiado h1 {
+    width: 180px;
+    padding: 20px;
+    box-shadow: 0px 0px 6px var(--azul);
+
+    opacity: 1; /* Inicialmente, el div está completamente transparente */
+    animation: fadeInOut 2.5s ease-in-out; /* Animación 'fadeInOut' durante 2 segundos */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 1; } /* Al inicio, opacidad 0 (invisible) */
+    100% { opacity: 0; } /* Al final, opacidad 1 (visible) */
+  }
+
+.inactive {
+    display: none;
+}
 @media screen and (min-width: 500px) {
     #todoLosRegistros {
         max-width: 500px;
