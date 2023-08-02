@@ -13,6 +13,10 @@ const pGananciaYefferson = document.querySelector('#yefferson')
 const inputFecha = document.querySelector('#fecha')
 const btnCopiar = document.querySelector('#copiar')
 const btnBorrar = document.querySelector('#borrar')
+//const btnCalcularDinero = document.querySelector('#calcular')
+const inputValordolar = document.querySelector('#valorDolar')
+const pTotalBolivares = document.querySelector('#totalBolivares')
+const ptotalDolares = document.querySelector('#totalDolares')
 const mostrarCopiado = document.querySelector('.copiado')
 //const inputDetalles = document.querySelector('#detalles')
 
@@ -37,13 +41,14 @@ inputTotal.addEventListener("input", restaInputs)
 inputCosto.addEventListener("input", restaInputs)
 setTimeout(restaInputs, 2000)
 
-
 /***** Copiar texto a Portapapeles ******/
-
 btnCopiar.addEventListener("click", copiarTexto);
+//btnCalcularDinero.addEventListener("click", calcularDinero)
 
+/** Esta funcion hace las operaciones del dinero para ser copiadas */
 function copiarTexto() {
 
+    /* Formulas para las ganancias*/
     const ganancia = parseFloat(inputTotal.value) - parseFloat(inputCosto.value)
     const gananciaRedondeada = ganancia.toFixed(2)
     const gananciaDividida = gananciaRedondeada / 2;
@@ -56,7 +61,7 @@ function copiarTexto() {
     const anio = fechaObjeto.getUTCFullYear(); // Retorna el año en formato completo (por ejemplo, 2023)
     const fechaNuevoFormato = `${dia.toString().padStart(2, "0")}-${mes.toString().padStart(2, "0")}-${anio}`;
 
-    /*** Seleccionar el dìa de la semana ***/
+    /*** Formatear Fecha: Seleccionar el dìa de la semana ***/
     const fechaDiaSemana = new Date(inputFecha.value);
     const numeroDiaSemana = fechaDiaSemana.getUTCDay(); // Obtenemos el número del día de la semana (0 para domingo, 1 para lunes, etc.)
     const nombresDiasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];    
@@ -68,18 +73,18 @@ const texto =
 `*Refrescos*
 *${diaSemana}* *${fechaNuevoFormato}*
   
-Total: ${inputTotal.value}
-Costo: ${inputCosto.value}
-Ganancia: ${gananciaRedondeada}
-÷2: ${gananciaDividida.toFixed(2)} (c/u)
+Total: ${inputTotal.value} $
+Costo: ${inputCosto.value} $
+Ganancia: ${gananciaRedondeada} $
+÷2: ${gananciaDividida.toFixed(2)} $ (c/u)
   
-*Yefferson: ${(parseFloat(inputCosto.value) + gananciaDividida).toFixed(2)} Total*
+*Yefferson: ${(parseFloat(inputCosto.value) + gananciaDividida).toFixed(2)}$ Total*
   
 *Forma de Pago/Dinero*
-• ${inputPunto.value} Punto (Se transfiere el ${inputFechaEntregaPunto.value})
+• ${inputPunto.value} Bs Punto (Se transfiere el ${inputFechaEntregaPunto.value})
 • ${inputEfectivo.value} Bs Efectivo
-• ${inputTransferencia.value} Transferencia
-• ${inputDivisa.value} Divisas
+• ${inputTransferencia.value} Bs Transferencia
+• ${inputDivisa.value} $ Divisas
 
 • *Detalles:*
 ${textareaDetalles.value}`;
@@ -96,8 +101,6 @@ ${textareaDetalles.value}`;
 
 }
 
-
-
 /** Esta funcion copia en el portapapeles el texto del navegador */
 function copiarTextoAPortapapeles(texto) {
   navigator.clipboard.writeText(texto)
@@ -109,6 +112,30 @@ function copiarTextoAPortapapeles(texto) {
     });
 }
 
+/** Esta funcion calcular si la cuenta esta buena */
+function calcularDinero () {
+
+  const valorDolarActual = parseFloat(inputValordolar.value);
+  const punto = parseFloat(inputPunto.value);
+  const efectivo = parseFloat(inputEfectivo.value)
+  const transferencia = parseFloat(inputTransferencia.value);
+  const divisas = parseFloat(inputDivisa.value);
+  
+  const totalBolivares = punto + efectivo + transferencia;
+  const totalDolares = (punto/valorDolarActual) + (efectivo/valorDolarActual) + divisas + (transferencia/valorDolarActual);
+  const totalDolaresAbolivares = totalDolares * valorDolarActual;
+
+  if (valorDolarActual){
+
+    pTotalBolivares.innerText = `${totalBolivares.toFixed(2)} Bs`;
+    ptotalDolares.innerText = `${totalDolares.toFixed(2)} $ | ${totalDolaresAbolivares.toFixed(1)} Bs`;
+    return
+  }
+
+}
+
+inputValordolar.addEventListener("input", calcularDinero)
+setTimeout(calcularDinero, 2000)
 
 
 
